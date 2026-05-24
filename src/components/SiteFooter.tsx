@@ -1,7 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { Flame, Instagram, Twitter, Facebook, Youtube, Mail, Phone } from "lucide-react";
+import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 export function SiteFooter() {
+  const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
+  const socials = [
+    { Icon: Instagram, href: settings.instagram_url },
+    { Icon: Twitter, href: settings.twitter_url },
+    { Icon: Facebook, href: settings.facebook_url },
+    { Icon: Youtube, href: settings.youtube_url },
+  ];
   return (
     <footer className="bg-secondary text-secondary-foreground mt-20">
       <div className="container mx-auto px-4 py-16">
@@ -17,10 +25,12 @@ export function SiteFooter() {
               The next-generation short video platform for creators worldwide.
             </p>
             <div className="flex gap-3 mt-5">
-              {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
+              {socials.map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Social link"
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 hover:bg-primary hover:scale-110 transition-all"
                 >
@@ -51,8 +61,8 @@ export function SiteFooter() {
           <div>
             <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Get in touch</h4>
             <ul className="space-y-2 text-sm text-secondary-foreground/70">
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> SHORTSAL@gmail.com</li>
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> 827997****</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> {settings.contact_email}</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> {settings.contact_phone}</li>
             </ul>
           </div>
         </div>
