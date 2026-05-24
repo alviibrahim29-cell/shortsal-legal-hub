@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { Mail, Phone, MessageCircle, Instagram, Twitter, Facebook, Youtube, LifeBuoy, HelpCircle } from "lucide-react";
 import { useState } from "react";
+import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -26,6 +27,13 @@ const faqs = [
 
 function ContactPage() {
   const [open, setOpen] = useState<number | null>(0);
+  const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
+  const socials = [
+    { Icon: Instagram, href: settings.instagram_url },
+    { Icon: Twitter, href: settings.twitter_url },
+    { Icon: Facebook, href: settings.facebook_url },
+    { Icon: Youtube, href: settings.youtube_url },
+  ];
   return (
     <PageLayout>
       <PageHero eyebrow="We're here to help" title="Contact Us" description="Have a question, feedback, or partnership idea? We'd love to hear from you." />
@@ -33,8 +41,8 @@ function ContactPage() {
       <section className="container mx-auto px-4 py-16 max-w-5xl">
         <div className="grid gap-6 md:grid-cols-3 mb-16 animate-slide-up">
           {[
-            { icon: Mail, label: "Email us", value: "SHORTSAL@gmail.com", href: "mailto:SHORTSAL@gmail.com" },
-            { icon: Phone, label: "Call us", value: "827997****", href: "tel:827997" },
+            { icon: Mail, label: "Email us", value: settings.contact_email, href: `mailto:${settings.contact_email}` },
+            { icon: Phone, label: "Call us", value: settings.contact_phone, href: `tel:${settings.contact_phone}` },
             { icon: MessageCircle, label: "Live chat", value: "Available 24/7", href: "#" },
           ].map((c, i) => (
             <a key={i} href={c.href} className="group rounded-2xl border border-border bg-card p-7 hover:border-primary/40 hover:shadow-[var(--shadow-card)] transition-all text-center">
@@ -56,7 +64,7 @@ function ContactPage() {
             <p className="text-muted-foreground mb-4">
               Our support team is available around the clock to help with account issues, content questions, and technical concerns.
             </p>
-            <a href="mailto:SHORTSAL@gmail.com" className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+            <a href={`mailto:${settings.contact_email}`} className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
               Email Support →
             </a>
           </div>
@@ -64,8 +72,8 @@ function ContactPage() {
             <h2 className="text-2xl font-bold mb-3">Follow us</h2>
             <p className="text-muted-foreground mb-4">Stay in the loop on new features, creator spotlights, and platform updates.</p>
             <div className="flex gap-3">
-              {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
-                <a key={i} href="#" aria-label="Social" className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:scale-110 transition-all">
+              {socials.map(({ Icon, href }, i) => (
+                <a key={i} href={href || "#"} target="_blank" rel="noopener noreferrer" aria-label="Social" className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:scale-110 transition-all">
                   <Icon className="h-5 w-5" />
                 </a>
               ))}
