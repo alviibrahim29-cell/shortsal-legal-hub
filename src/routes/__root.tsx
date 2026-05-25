@@ -73,14 +73,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "shortsal" },
+      { name: "description", content: "SHORTSAL Legal Hub provides essential legal and informational pages for a short video platform." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "shortsal" },
+      { property: "og:description", content: "SHORTSAL Legal Hub provides essential legal and informational pages for a short video platform." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "shortsal" },
+      { name: "twitter:description", content: "SHORTSAL Legal Hub provides essential legal and informational pages for a short video platform." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7fb0ad55-40b4-493e-bce5-21809dc40104/id-preview-38005f5c--ff3f1941-19e2-443e-af28-74878838fb91.lovable.app-1779675626615.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7fb0ad55-40b4-493e-bce5-21809dc40104/id-preview-38005f5c--ff3f1941-19e2-443e-af28-74878838fb91.lovable.app-1779675626615.png" },
     ],
     links: [
       {
