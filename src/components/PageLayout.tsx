@@ -54,3 +54,32 @@ export function PolicyBlock({ icon: Icon, title, children }: { icon?: any; title
     </div>
   );
 }
+
+/**
+ * Renders admin-editable long text. Splits on blank lines into sections;
+ * the first line of each section becomes the heading.
+ */
+export function RichContent({ text }: { text: string }) {
+  const sections = text.split(/\n\s*\n/).map((s) => s.trim()).filter(Boolean);
+  if (sections.length === 0) return null;
+  return (
+    <div className="space-y-6">
+      {sections.map((section, i) => {
+        const lines = section.split("\n");
+        const heading = lines[0];
+        const body = lines.slice(1).join("\n").trim();
+        return (
+          <div
+            key={i}
+            className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-[var(--shadow-card)] hover:border-primary/40 transition-all"
+          >
+            <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">{heading}</h2>
+            {body && (
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{body}</p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
