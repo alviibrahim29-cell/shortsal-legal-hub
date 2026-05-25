@@ -1,18 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Flame } from "lucide-react";
+import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
   { to: "/community-guidelines", label: "Community" },
+  { to: "/earning-policy", label: "Earning" },
   { to: "/privacy-policy", label: "Privacy" },
   { to: "/terms", label: "Terms" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -20,7 +23,7 @@ export function SiteHeader() {
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[var(--shadow-glow)]">
             <Flame className="h-5 w-5" />
           </span>
-          <span className="tracking-tight">SHORTSAL</span>
+          <span className="tracking-tight">{settings.site_name}</span>
         </Link>
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
           {links.map((l) => (

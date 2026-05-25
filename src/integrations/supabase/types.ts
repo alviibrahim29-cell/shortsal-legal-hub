@@ -16,31 +16,82 @@ export type Database = {
     Tables: {
       site_settings: {
         Row: {
+          about_content: string
+          about_description: string
+          about_title: string
+          community_content: string
+          community_description: string
+          community_title: string
           contact_email: string
           contact_phone: string
+          earning_content: string
+          earning_description: string
+          earning_title: string
           facebook_url: string
           id: string
           instagram_url: string
+          privacy_content: string
+          privacy_description: string
+          privacy_title: string
+          site_name: string
+          site_tagline: string
+          terms_content: string
+          terms_description: string
+          terms_title: string
           twitter_url: string
           updated_at: string
           youtube_url: string
         }
         Insert: {
+          about_content?: string
+          about_description?: string
+          about_title?: string
+          community_content?: string
+          community_description?: string
+          community_title?: string
           contact_email?: string
           contact_phone?: string
+          earning_content?: string
+          earning_description?: string
+          earning_title?: string
           facebook_url?: string
           id?: string
           instagram_url?: string
+          privacy_content?: string
+          privacy_description?: string
+          privacy_title?: string
+          site_name?: string
+          site_tagline?: string
+          terms_content?: string
+          terms_description?: string
+          terms_title?: string
           twitter_url?: string
           updated_at?: string
           youtube_url?: string
         }
         Update: {
+          about_content?: string
+          about_description?: string
+          about_title?: string
+          community_content?: string
+          community_description?: string
+          community_title?: string
           contact_email?: string
           contact_phone?: string
+          earning_content?: string
+          earning_description?: string
+          earning_title?: string
           facebook_url?: string
           id?: string
           instagram_url?: string
+          privacy_content?: string
+          privacy_description?: string
+          privacy_title?: string
+          site_name?: string
+          site_tagline?: string
+          terms_content?: string
+          terms_description?: string
+          terms_title?: string
           twitter_url?: string
           updated_at?: string
           youtube_url?: string

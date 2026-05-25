@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as EarningPolicyRouteImport } from './routes/earning-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityGuidelinesRouteImport } from './routes/community-guidelines'
 import { Route as AboutRouteImport } from './routes/about'
@@ -26,6 +27,11 @@ const TermsRoute = TermsRouteImport.update({
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EarningPolicyRoute = EarningPolicyRouteImport.update({
+  id: '/earning-policy',
+  path: '/earning-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/community-guidelines': typeof CommunityGuidelinesRoute
   '/contact': typeof ContactRoute
+  '/earning-policy': typeof EarningPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/community-guidelines': typeof CommunityGuidelinesRoute
   '/contact': typeof ContactRoute
+  '/earning-policy': typeof EarningPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/community-guidelines': typeof CommunityGuidelinesRoute
   '/contact': typeof ContactRoute
+  '/earning-policy': typeof EarningPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/community-guidelines'
     | '/contact'
+    | '/earning-policy'
     | '/privacy-policy'
     | '/terms'
     | '/admin/login'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/community-guidelines'
     | '/contact'
+    | '/earning-policy'
     | '/privacy-policy'
     | '/terms'
     | '/admin/login'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/community-guidelines'
     | '/contact'
+    | '/earning-policy'
     | '/privacy-policy'
     | '/terms'
     | '/admin/login'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CommunityGuidelinesRoute: typeof CommunityGuidelinesRoute
   ContactRoute: typeof ContactRoute
+  EarningPolicyRoute: typeof EarningPolicyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   TermsRoute: typeof TermsRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
       preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/earning-policy': {
+      id: '/earning-policy'
+      path: '/earning-policy'
+      fullPath: '/earning-policy'
+      preLoaderRoute: typeof EarningPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CommunityGuidelinesRoute: CommunityGuidelinesRoute,
   ContactRoute: ContactRoute,
+  EarningPolicyRoute: EarningPolicyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   TermsRoute: TermsRoute,
   AdminLoginRoute: AdminLoginRoute,
