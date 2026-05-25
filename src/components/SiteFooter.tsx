@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Flame, Instagram, Twitter, Facebook, Youtube, Mail, Phone } from "lucide-react";
+import { Flame, Instagram, Twitter, Facebook, Youtube, Mail, Phone, ShieldCheck } from "lucide-react";
 import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 export function SiteFooter() {
@@ -19,10 +19,10 @@ export function SiteFooter() {
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <Flame className="h-5 w-5" />
               </span>
-              SHORTSAL
+              {settings.site_name}
             </Link>
             <p className="text-sm text-secondary-foreground/70 leading-relaxed">
-              The next-generation short video platform for creators worldwide.
+              {settings.site_tagline}
             </p>
             <div className="flex gap-3 mt-5">
               {socials.map(({ Icon, href }, i) => (
@@ -55,6 +55,7 @@ export function SiteFooter() {
               <li><Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
               <li><Link to="/community-guidelines" className="hover:text-primary transition-colors">Guidelines</Link></li>
+              <li><Link to="/earning-policy" className="hover:text-primary transition-colors">Earning Policy</Link></li>
             </ul>
           </div>
 
@@ -68,8 +69,14 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-secondary-foreground/60">
-          <p>© {new Date().getFullYear()} SHORTSAL. All rights reserved.</p>
-          <p>Made with passion for creators.</p>
+          <p>© {new Date().getFullYear()} {settings.site_name}. All rights reserved.</p>
+          <Link
+            to="/admin"
+            className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+            aria-label="Admin Portal"
+          >
+            <ShieldCheck className="h-4 w-4" /> Admin Portal
+          </Link>
         </div>
       </div>
     </footer>
