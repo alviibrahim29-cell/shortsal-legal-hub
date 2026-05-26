@@ -48,12 +48,17 @@ function AdminLogin() {
     setLoading(true);
     try {
       if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: { emailRedirectTo: `${window.location.origin}/admin` },
         });
         if (error) throw error;
+        // If email confirmation is required, no session is returned — sign in directly.
+        if (!data.session) {
+          const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+          if (signInError) throw signInError;
+        }
         toast.success("Admin account created. You're signed in.");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });

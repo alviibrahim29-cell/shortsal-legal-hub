@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Flame } from "lucide-react";
+import { Menu, X, Flame, ShieldCheck } from "lucide-react";
 import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 const links = [
@@ -59,6 +59,13 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              to="/admin"
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex items-center gap-2 rounded-lg bg-primary/10 text-primary px-3 py-2 text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <ShieldCheck className="h-4 w-4" /> Admin Portal
+            </Link>
           </nav>
         </div>
       )}

@@ -1,6 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { Flame, Instagram, Twitter, Facebook, Youtube, Mail, Phone, ShieldCheck } from "lucide-react";
+import { Flame, Instagram, Twitter, Facebook, Youtube, Mail, Phone } from "lucide-react";
 import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
+import badgeAppstore from "@/assets/badge-appstore.png";
+import badgePlaystore from "@/assets/badge-playstore.png";
+import badgeIndus from "@/assets/badge-indus.png";
+
+const downloads = [
+  { src: badgeAppstore, alt: "Download on the App Store", href: "#" },
+  { src: badgePlaystore, alt: "Get it on Google Play", href: "#" },
+  { src: badgeIndus, alt: "Available on Indus Appstore", href: "#" },
+];
 
 export function SiteFooter() {
   const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
@@ -68,15 +77,30 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-secondary-foreground/60">
-          <p>© {new Date().getFullYear()} {settings.site_name}. All rights reserved.</p>
-          <Link
-            to="/admin"
-            className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
-            aria-label="Admin Portal"
-          >
-            <ShieldCheck className="h-4 w-4" /> Admin Portal
-          </Link>
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <h4 className="text-center font-semibold mb-5 text-sm uppercase tracking-wider">Download the app</h4>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            {downloads.map((d) => (
+              <a
+                key={d.alt}
+                href={d.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={d.alt}
+                className="block transition-transform hover:scale-105"
+              >
+                <img
+                  src={d.src}
+                  alt={d.alt}
+                  loading="lazy"
+                  className="h-12 sm:h-14 w-auto rounded-lg"
+                />
+              </a>
+            ))}
+          </div>
+          <p className="text-center text-sm text-secondary-foreground/60 mt-8">
+            © {new Date().getFullYear()} {settings.site_name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
