@@ -21,6 +21,8 @@ import {
   ShieldCheck,
   Globe,
   Download,
+  Sparkles,
+  LayoutTemplate,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useSiteSettings, SITE_SETTINGS_DEFAULTS, type SiteSettings } from "@/hooks/useSiteSettings";
@@ -147,8 +149,10 @@ function AdminPanel() {
 
         <form onSubmit={save} className="space-y-6">
           <Tabs defaultValue="general" className="w-full">
-            <TabsList className="grid grid-cols-3 sm:grid-cols-7 h-auto">
+            <TabsList className="grid grid-cols-3 sm:grid-cols-9 h-auto">
               <TabsTrigger value="general">General</TabsTrigger>
+              <TabsTrigger value="hero">Hero</TabsTrigger>
+              <TabsTrigger value="footer">Footer</TabsTrigger>
               <TabsTrigger value="contact">Contact</TabsTrigger>
               <TabsTrigger value="social">Social</TabsTrigger>
               {PAGES.map((p) => (
@@ -179,6 +183,102 @@ function AdminPanel() {
                     onChange={(e) => update("download_url", e.target.value)}
                   />
                 </Field>
+                <Field icon={Download} label="Header CTA Button Label">
+                  <Input
+                    value={form.header_cta_label}
+                    onChange={(e) => update("header_cta_label", e.target.value)}
+                    placeholder="Download"
+                  />
+                </Field>
+              </Card>
+            </TabsContent>
+
+            {/* Hero */}
+            <TabsContent value="hero" className="mt-6">
+              <Card>
+                <div className="text-xs text-muted-foreground rounded-lg bg-muted/50 p-3 leading-relaxed">
+                  <strong className="text-foreground">Tip:</strong> The last word of the Hero Title is highlighted in red.
+                </div>
+                <Field icon={Sparkles} label="Hero Badge (small pill above the title)">
+                  <Input
+                    value={form.hero_badge}
+                    onChange={(e) => update("hero_badge", e.target.value)}
+                  />
+                </Field>
+                <Field icon={Sparkles} label="Hero Title">
+                  <Input
+                    value={form.hero_title}
+                    onChange={(e) => update("hero_title", e.target.value)}
+                  />
+                </Field>
+                <Field icon={Sparkles} label="Hero Subtitle">
+                  <Textarea
+                    rows={3}
+                    value={form.hero_subtitle}
+                    onChange={(e) => update("hero_subtitle", e.target.value)}
+                  />
+                </Field>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <Field label="Primary CTA Label (download button)">
+                    <Input
+                      value={form.hero_primary_cta_label}
+                      onChange={(e) => update("hero_primary_cta_label", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Secondary CTA Label">
+                    <Input
+                      value={form.hero_secondary_cta_label}
+                      onChange={(e) => update("hero_secondary_cta_label", e.target.value)}
+                    />
+                  </Field>
+                </div>
+                <Field label="Secondary CTA URL (internal like /about or full https://...)">
+                  <Input
+                    value={form.hero_secondary_cta_url}
+                    onChange={(e) => update("hero_secondary_cta_url", e.target.value)}
+                  />
+                </Field>
+                <div className="border-t border-border pt-5 space-y-5">
+                  <p className="text-sm font-semibold text-foreground">Bottom CTA Section</p>
+                  <Field label="CTA Section Title">
+                    <Input
+                      value={form.cta_section_title}
+                      onChange={(e) => update("cta_section_title", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="CTA Section Subtitle">
+                    <Textarea
+                      rows={2}
+                      value={form.cta_section_subtitle}
+                      onChange={(e) => update("cta_section_subtitle", e.target.value)}
+                    />
+                  </Field>
+                </div>
+              </Card>
+            </TabsContent>
+
+            {/* Footer */}
+            <TabsContent value="footer" className="mt-6">
+              <Card>
+                <Field icon={LayoutTemplate} label="Footer Tagline (under the logo)">
+                  <Textarea
+                    rows={2}
+                    value={form.site_tagline}
+                    onChange={(e) => update("site_tagline", e.target.value)}
+                  />
+                </Field>
+                <Field icon={LayoutTemplate} label="Footer Copyright (leave empty for auto)">
+                  <Input
+                    placeholder={`© ${new Date().getFullYear()} ${form.site_name}. All rights reserved.`}
+                    value={form.footer_copyright}
+                    onChange={(e) => update("footer_copyright", e.target.value)}
+                  />
+                </Field>
+                <div className="text-xs text-muted-foreground rounded-lg bg-muted/50 p-3 leading-relaxed">
+                  Footer social links are managed in the <strong>Social</strong> tab.
+                  Contact details shown in the footer come from the <strong>Contact</strong> tab.
+                  Store badge links use the <strong>App Download URL</strong> from the General tab.
+                </div>
               </Card>
             </TabsContent>
 
