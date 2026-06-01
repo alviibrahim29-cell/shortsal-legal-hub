@@ -44,7 +44,7 @@ export function SiteHeader() {
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-[var(--shadow-glow)] hover:scale-105 transition-transform"
           >
-            <Download className="h-4 w-4" /> Download
+            <Download className="h-4 w-4" /> {settings.header_cta_label}
           </a>
           <button
           className="md:hidden p-2 rounded-md hover:bg-muted"
@@ -76,7 +76,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm font-semibold"
             >
-              <Download className="h-4 w-4" /> Download App
+              <Download className="h-4 w-4" /> {settings.header_cta_label}
             </a>
             <Link
               to="/admin"
