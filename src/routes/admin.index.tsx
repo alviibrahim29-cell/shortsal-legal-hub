@@ -20,6 +20,7 @@ import {
   Youtube,
   ShieldCheck,
   Globe,
+  Download,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useSiteSettings, SITE_SETTINGS_DEFAULTS, type SiteSettings } from "@/hooks/useSiteSettings";
@@ -168,6 +169,14 @@ function AdminPanel() {
                     rows={2}
                     value={form.site_tagline}
                     onChange={(e) => update("site_tagline", e.target.value)}
+                  />
+                </Field>
+                <Field icon={Download} label="App Download URL (used by the Download button & store badges)">
+                  <Input
+                    type="url"
+                    placeholder="https://..."
+                    value={form.download_url}
+                    onChange={(e) => update("download_url", e.target.value)}
                   />
                 </Field>
               </Card>

@@ -26,6 +26,7 @@ export type SiteSettings = {
   earning_title: string;
   earning_description: string;
   earning_content: string;
+  download_url: string;
 };
 
 export const SITE_SETTINGS_DEFAULTS: SiteSettings = {
@@ -53,6 +54,7 @@ export const SITE_SETTINGS_DEFAULTS: SiteSettings = {
   earning_title: "Earning Policy",
   earning_description: "Learn how monetization works and when your channel becomes eligible to earn.",
   earning_content: "",
+  download_url: "https://apkfab.com/shortsal/co.median.android.bnelkde/apk?h=bbfd1cf29a769942ad8a9e7af7f2f939e8efd0fe54e2f089603af62188474aab",
 };
 
 export function useSiteSettings() {

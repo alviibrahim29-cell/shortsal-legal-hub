@@ -5,14 +5,14 @@ import badgeAppstore from "@/assets/badge-appstore.png";
 import badgePlaystore from "@/assets/badge-playstore.png";
 import badgeIndus from "@/assets/badge-indus.png";
 
-const downloads = [
-  { src: badgeAppstore, alt: "Download on the App Store", href: "#" },
-  { src: badgePlaystore, alt: "Get it on Google Play", href: "#" },
-  { src: badgeIndus, alt: "Available on Indus Appstore", href: "#" },
-];
-
 export function SiteFooter() {
   const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
+  const downloadHref = settings.download_url || "#";
+  const downloads = [
+    { src: badgeAppstore, alt: "Download on the App Store", href: downloadHref },
+    { src: badgePlaystore, alt: "Get it on Google Play", href: downloadHref },
+    { src: badgeIndus, alt: "Available on Indus Appstore", href: downloadHref },
+  ];
   const socials = [
     { Icon: Instagram, href: settings.instagram_url },
     { Icon: Twitter, href: settings.twitter_url },

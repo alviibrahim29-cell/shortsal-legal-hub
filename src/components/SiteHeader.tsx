@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Flame, ShieldCheck } from "lucide-react";
+import { Menu, X, Flame, ShieldCheck, Download } from "lucide-react";
 import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 const links = [
@@ -37,13 +37,23 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <button
+        <div className="flex items-center gap-2">
+          <a
+            href={settings.download_url || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-[var(--shadow-glow)] hover:scale-105 transition-transform"
+          >
+            <Download className="h-4 w-4" /> Download
+          </a>
+          <button
           className="md:hidden p-2 rounded-md hover:bg-muted"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          </button>
+        </div>
       </div>
       {open && (
         <div className="md:hidden border-t border-border bg-background animate-fade-in">
@@ -59,10 +69,19 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
+            <a
+              href={settings.download_url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm font-semibold"
+            >
+              <Download className="h-4 w-4" /> Download App
+            </a>
             <Link
               to="/admin"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center gap-2 rounded-lg bg-primary/10 text-primary px-3 py-2 text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary/10 text-primary px-3 py-2 text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <ShieldCheck className="h-4 w-4" /> Admin Portal
             </Link>

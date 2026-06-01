@@ -24,6 +24,7 @@ export type Database = {
           community_title: string
           contact_email: string
           contact_phone: string
+          download_url: string
           earning_content: string
           earning_description: string
           earning_title: string
@@ -51,6 +52,7 @@ export type Database = {
           community_title?: string
           contact_email?: string
           contact_phone?: string
+          download_url?: string
           earning_content?: string
           earning_description?: string
           earning_title?: string
@@ -78,6 +80,7 @@ export type Database = {
           community_title?: string
           contact_email?: string
           contact_phone?: string
+          download_url?: string
           earning_content?: string
           earning_description?: string
           earning_title?: string
