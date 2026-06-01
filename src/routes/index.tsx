@@ -19,19 +19,25 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
+  const heroTitle = settings.hero_title;
+  const lastSpace = heroTitle.lastIndexOf(" ");
+  const heroHead = lastSpace > 0 ? heroTitle.slice(0, lastSpace) : heroTitle;
+  const heroAccent = lastSpace > 0 ? heroTitle.slice(lastSpace + 1) : "";
+  const secondaryUrl = settings.hero_secondary_cta_url || "/about";
+  const isExternalSecondary = /^https?:\/\//i.test(secondaryUrl);
   return (
     <PageLayout>
       <section className="relative overflow-hidden" style={{ background: "var(--gradient-dark)" }}>
         <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 70% 30%, oklch(0.58 0.22 25 / 0.35), transparent 50%)" }} />
         <div className="container relative mx-auto px-4 py-24 md:py-36 text-center animate-fade-in">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/15 text-primary text-xs font-semibold uppercase tracking-wider mb-6 border border-primary/30">
-            Welcome to the future of short video
+            {settings.hero_badge}
           </span>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-            Create. Watch. <span className="text-primary">Go Viral.</span>
+            {heroHead} {heroAccent && <span className="text-primary">{heroAccent}</span>}
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/70 leading-relaxed mb-10">
-            SHORTSAL is the ultimate short video platform where creativity meets community. Upload, discover, and share moments that matter.
+            {settings.hero_subtitle}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
@@ -40,14 +46,17 @@ function Index() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-[var(--shadow-glow)] hover:scale-105 transition-transform"
             >
-              <Download className="h-5 w-5" /> Download App
+              <Download className="h-5 w-5" /> {settings.hero_primary_cta_label}
             </a>
-            <Link to="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors">
-              Explore <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link to="/community-guidelines" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold hover:bg-white/10 transition-colors">
-              Community Guidelines
-            </Link>
+            {isExternalSecondary ? (
+              <a href={secondaryUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors">
+                {settings.hero_secondary_cta_label} <ArrowRight className="h-4 w-4" />
+              </a>
+            ) : (
+              <Link to={secondaryUrl} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors">
+                {settings.hero_secondary_cta_label} <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -79,8 +88,8 @@ function Index() {
 
       <section className="container mx-auto px-4 pb-20">
         <div className="rounded-3xl p-10 md:p-16 text-center text-white" style={{ background: "var(--gradient-hero)" }}>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Ready to start creating?</h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">Download {settings.site_name} now and share your story with the world.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">{settings.cta_section_title}</h2>
+          <p className="text-white/80 max-w-xl mx-auto mb-8">{settings.cta_section_subtitle}</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
               href={settings.download_url || "#"}
@@ -88,7 +97,7 @@ function Index() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-primary font-semibold hover:scale-105 transition-transform"
             >
-              <Download className="h-5 w-5" /> Download App
+              <Download className="h-5 w-5" /> {settings.hero_primary_cta_label}
             </a>
             <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition-colors">
               Get in touch <ArrowRight className="h-4 w-4" />

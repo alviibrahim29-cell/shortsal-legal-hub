@@ -24,11 +24,21 @@ export type Database = {
           community_title: string
           contact_email: string
           contact_phone: string
+          cta_section_subtitle: string
+          cta_section_title: string
           download_url: string
           earning_content: string
           earning_description: string
           earning_title: string
           facebook_url: string
+          footer_copyright: string
+          header_cta_label: string
+          hero_badge: string
+          hero_primary_cta_label: string
+          hero_secondary_cta_label: string
+          hero_secondary_cta_url: string
+          hero_subtitle: string
+          hero_title: string
           id: string
           instagram_url: string
           privacy_content: string
@@ -52,11 +62,21 @@ export type Database = {
           community_title?: string
           contact_email?: string
           contact_phone?: string
+          cta_section_subtitle?: string
+          cta_section_title?: string
           download_url?: string
           earning_content?: string
           earning_description?: string
           earning_title?: string
           facebook_url?: string
+          footer_copyright?: string
+          header_cta_label?: string
+          hero_badge?: string
+          hero_primary_cta_label?: string
+          hero_secondary_cta_label?: string
+          hero_secondary_cta_url?: string
+          hero_subtitle?: string
+          hero_title?: string
           id?: string
           instagram_url?: string
           privacy_content?: string
@@ -80,11 +100,21 @@ export type Database = {
           community_title?: string
           contact_email?: string
           contact_phone?: string
+          cta_section_subtitle?: string
+          cta_section_title?: string
           download_url?: string
           earning_content?: string
           earning_description?: string
           earning_title?: string
           facebook_url?: string
+          footer_copyright?: string
+          header_cta_label?: string
+          hero_badge?: string
+          hero_primary_cta_label?: string
+          hero_secondary_cta_label?: string
+          hero_secondary_cta_url?: string
+          hero_subtitle?: string
+          hero_title?: string
           id?: string
           instagram_url?: string
           privacy_content?: string

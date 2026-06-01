@@ -99,7 +99,9 @@ export function SiteFooter() {
             ))}
           </div>
           <p className="text-center text-sm text-secondary-foreground/60 mt-8">
-            © {new Date().getFullYear()} {settings.site_name}. All rights reserved.
+            {settings.footer_copyright?.trim()
+              ? settings.footer_copyright
+              : `© ${new Date().getFullYear()} ${settings.site_name}. All rights reserved.`}
           </p>
         </div>
       </div>
