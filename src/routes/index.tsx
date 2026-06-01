@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { PageLayout } from "@/components/PageLayout";
-import { Video, Users, Sparkles, Shield, Heart, PlayCircle, ArrowRight } from "lucide-react";
+import { Video, Users, Sparkles, Shield, Heart, PlayCircle, ArrowRight, Download } from "lucide-react";
+import { useSiteSettings, SITE_SETTINGS_DEFAULTS } from "@/hooks/useSiteSettings";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { data: settings = SITE_SETTINGS_DEFAULTS } = useSiteSettings();
   return (
     <PageLayout>
       <section className="relative overflow-hidden" style={{ background: "var(--gradient-dark)" }}>
@@ -32,8 +34,16 @@ function Index() {
             SHORTSAL is the ultimate short video platform where creativity meets community. Upload, discover, and share moments that matter.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link to="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-[var(--shadow-glow)] hover:scale-105 transition-transform">
-              Explore SHORTSAL <ArrowRight className="h-4 w-4" />
+            <a
+              href={settings.download_url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-[var(--shadow-glow)] hover:scale-105 transition-transform"
+            >
+              <Download className="h-5 w-5" /> Download App
+            </a>
+            <Link to="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors">
+              Explore <ArrowRight className="h-4 w-4" />
             </Link>
             <Link to="/community-guidelines" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold hover:bg-white/10 transition-colors">
               Community Guidelines
@@ -70,10 +80,20 @@ function Index() {
       <section className="container mx-auto px-4 pb-20">
         <div className="rounded-3xl p-10 md:p-16 text-center text-white" style={{ background: "var(--gradient-hero)" }}>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Ready to start creating?</h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">Join the SHORTSAL community today and share your story with the world.</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-primary font-semibold hover:scale-105 transition-transform">
-            Get in touch <ArrowRight className="h-4 w-4" />
-          </Link>
+          <p className="text-white/80 max-w-xl mx-auto mb-8">Download {settings.site_name} now and share your story with the world.</p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={settings.download_url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-primary font-semibold hover:scale-105 transition-transform"
+            >
+              <Download className="h-5 w-5" /> Download App
+            </a>
+            <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition-colors">
+              Get in touch <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </PageLayout>
