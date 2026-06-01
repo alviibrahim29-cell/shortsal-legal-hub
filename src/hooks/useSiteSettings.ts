@@ -27,6 +27,16 @@ export type SiteSettings = {
   earning_description: string;
   earning_content: string;
   download_url: string;
+  header_cta_label: string;
+  hero_badge: string;
+  hero_title: string;
+  hero_subtitle: string;
+  hero_primary_cta_label: string;
+  hero_secondary_cta_label: string;
+  hero_secondary_cta_url: string;
+  cta_section_title: string;
+  cta_section_subtitle: string;
+  footer_copyright: string;
 };
 
 export const SITE_SETTINGS_DEFAULTS: SiteSettings = {
@@ -55,6 +65,16 @@ export const SITE_SETTINGS_DEFAULTS: SiteSettings = {
   earning_description: "Learn how monetization works and when your channel becomes eligible to earn.",
   earning_content: "",
   download_url: "https://apkfab.com/shortsal/co.median.android.bnelkde/apk?h=bbfd1cf29a769942ad8a9e7af7f2f939e8efd0fe54e2f089603af62188474aab",
+  header_cta_label: "Download",
+  hero_badge: "Welcome to the future of short video",
+  hero_title: "Create. Watch. Go Viral.",
+  hero_subtitle: "SHORTSAL is the ultimate short video platform where creativity meets community. Upload, discover, and share moments that matter.",
+  hero_primary_cta_label: "Download App",
+  hero_secondary_cta_label: "Explore",
+  hero_secondary_cta_url: "/about",
+  cta_section_title: "Ready to start creating?",
+  cta_section_subtitle: "Download SHORTSAL now and share your story with the world.",
+  footer_copyright: "",
 };
 
 export function useSiteSettings() {
